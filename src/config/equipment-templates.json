@@ -1,0 +1,99 @@
+{
+  "_comment": "装备模板配置表 - 数据源：04-装备系统.md",
+  "version": 1,
+  "qualityCoefficients": {
+    "common": 1.0,
+    "fine": 1.3,
+    "rare": 1.7,
+    "epic": 2.2,
+    "legendary": 3.0,
+    "mythic": 4.0,
+    "ancient": 5.0
+  },
+  "craftProbabilities": {
+    "common": 0.40,
+    "fine": 0.30,
+    "rare": 0.18,
+    "epic": 0.09,
+    "legendary": 0.025,
+    "mythic": 0.005
+  },
+  "partCoefficients": {
+    "weapon":   { "attack": 1.0, "defense": 0,   "hp": 0 },
+    "helmet":   { "attack": 0,   "defense": 0.6, "hp": 0.5 },
+    "armor":    { "attack": 0,   "defense": 0.8, "hp": 0.8 },
+    "gauntlet": { "attack": 0.4, "defense": 0.3, "hp": 0.2 },
+    "boot":     { "attack": 0.2, "defense": 0.4, "hp": 0.4 },
+    "talisman": { "attack": 0.6, "defense": 0.2, "hp": 0.5 }
+  },
+  "realmBases": {
+    "练气": { "attack": 15, "defense": 8, "hp": 50 },
+    "筑基": { "attack": 120, "defense": 60, "hp": 400 },
+    "金丹": { "attack": 800, "defense": 400, "hp": 3000 },
+    "元婴": { "attack": 5000, "defense": 2500, "hp": 20000 },
+    "化神": { "attack": 35000, "defense": 18000, "hp": 150000 },
+    "渡劫": { "attack": 250000, "defense": 120000, "hp": 1000000 },
+    "无限": { "attack": 2000000, "defense": 1000000, "hp": 8000000 }
+  },
+  "sellPrices": {
+    "common": 100,
+    "fine": 500,
+    "rare": 2000,
+    "epic": 8000,
+    "legendary": 30000,
+    "mythic": 100000,
+    "ancient": 500000
+  },
+  "dismantleReturnRate": 0.30,
+  "enhanceDismantleBonus": 0.50,
+  "templates": {
+    "xuantie_sword": {
+      "id": "xuantie_sword",
+      "name": "玄铁剑",
+      "slot": "weapon",
+      "realm": "练气",
+      "requiredMaterials": { "iron_ore": 20, "copper_ore": 10 },
+      "requiredStarCoins": 500
+    },
+    "xuantie_helmet": {
+      "id": "xuantie_helmet",
+      "name": "玄铁盔",
+      "slot": "helmet",
+      "realm": "练气",
+      "requiredMaterials": { "iron_ore": 15, "copper_ore": 8 },
+      "requiredStarCoins": 400
+    },
+    "xuantie_armor": {
+      "id": "xuantie_armor",
+      "name": "玄铁铠",
+      "slot": "armor",
+      "realm": "练气",
+      "requiredMaterials": { "iron_ore": 25, "copper_ore": 12 },
+      "requiredStarCoins": 600
+    },
+    "xuantie_gauntlet": {
+      "id": "xuantie_gauntlet",
+      "name": "玄铁护腕",
+      "slot": "gauntlet",
+      "realm": "练气",
+      "requiredMaterials": { "iron_ore": 12, "copper_ore": 6 },
+      "requiredStarCoins": 350
+    },
+    "xuantie_boot": {
+      "id": "xuantie_boot",
+      "name": "玄铁靴",
+      "slot": "boot",
+      "realm": "练气",
+      "requiredMaterials": { "iron_ore": 12, "copper_ore": 6 },
+      "requiredStarCoins": 350
+    },
+    "xuantie_talisman": {
+      "id": "xuantie_talisman",
+      "name": "玄铁法宝",
+      "slot": "talisman",
+      "realm": "练气",
+      "requiredMaterials": { "iron_ore": 18, "copper_ore": 10, "star_dust": 5 },
+      "requiredStarCoins": 500
+    }
+  }
+}

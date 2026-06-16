@@ -1,0 +1,31 @@
+{
+  "_comment": "强化配置表 - 数据源：04-装备系统.md 强化部分",
+  "version": 1,
+  "enhanceCoefficientBase": 1.25,
+  "maxEnhanceLevel": {
+    "cycle1": 15,
+    "cycle2to5": 30,
+    "endless": -1
+  },
+  "successRateFormula": {
+    "_comment": "成功率 = max(5%, 100% - level × 0.5%)",
+    "baseRate": 1.0,
+    "decreasePerLevel": 0.005,
+    "minRate": 0.05
+  },
+  "costFormula": {
+    "_comment": "强化石消耗 = ceil(2 + level × 1.5)，星币消耗 = 500 × 1.5^level",
+    "baseStones": 2,
+    "stonesPerLevel": 1.5,
+    "baseStarCoins": 500,
+    "starCoinsMultiplier": 1.5
+  },
+  "failurePenalty": {
+    "_comment": "+5以上失败降1级，+10以上失败降2级",
+    "safeLevel": 5,
+    "penaltyLevels": [
+      { "minLevel": 6, "maxLevel": 10, "downgrade": 1 },
+      { "minLevel": 11, "maxLevel": 999, "downgrade": 2 }
+    ]
+  }
+}

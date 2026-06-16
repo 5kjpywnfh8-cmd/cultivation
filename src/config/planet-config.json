@@ -1,0 +1,35 @@
+{
+  "_comment": "星球资源配置表 - 数据源：02-星球与资源系统.md",
+  "version": 1,
+  "planets": {
+    "origin": {
+      "id": "origin",
+      "name": "起源星",
+      "description": "新手星球，资源贫瘠但安全",
+      "unlockCondition": null,
+      "resources": {
+        "stone": { "name": "石头", "baseRate": 5, "autoRate": 2.5, "maxReserve": 50000, "regenRate": 500, "type": "basic" },
+        "wood": { "name": "木材", "baseRate": 5, "autoRate": 2.5, "maxReserve": 50000, "regenRate": 500, "type": "basic" },
+        "herb": { "name": "灵草", "baseRate": 3, "autoRate": 1.5, "maxReserve": 30000, "regenRate": 300, "type": "basic" }
+      },
+      "monsters": ["origin_slime", "origin_goblin"],
+      "boss": null
+    },
+    "xuantie": {
+      "id": "xuantie",
+      "name": "玄铁星",
+      "description": "矿产丰富的星球，有强大异兽",
+      "unlockCondition": { "level": 3 },
+      "resources": {
+        "iron_ore": { "name": "铁矿", "baseRate": 8, "autoRate": 4, "maxReserve": 100000, "regenRate": 1000, "type": "basic" },
+        "copper_ore": { "name": "铜矿", "baseRate": 6, "autoRate": 3, "maxReserve": 100000, "regenRate": 1000, "type": "basic" },
+        "star_dust": { "name": "星尘", "baseRate": 3, "autoRate": 1.5, "maxReserve": 100000, "regenRate": 1000, "type": "basic" }
+      },
+      "monsters": ["xuantie_beetle", "xuantie_golem"],
+      "boss": "xuantie_behemoth"
+    }
+  },
+  "resourceRegenRate": 0.01,
+  "depletedOutputRate": 0.10,
+  "rareDepletedOutputRate": 0
+}

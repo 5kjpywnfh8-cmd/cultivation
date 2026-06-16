@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.DS_Store
+*.local
+.env.local
+.env.*.local
+*.log
+设计方案/.git/
+设计方案/.mimo/

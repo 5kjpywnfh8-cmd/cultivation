@@ -1,0 +1,36 @@
+{
+  "_comment": "功法配置表 - 数据源：07-技能系统.md",
+  "version": 1,
+  "skills": {
+    "basic_sword_art": {
+      "id": "basic_sword_art",
+      "name": "基础剑诀",
+      "type": "active",
+      "description": "基础攻击技能",
+      "damageMultiplier": 1.2,
+      "cooldown": 3,
+      "unlockCondition": null,
+      "fragmentRequired": 0
+    },
+    "gathering_art": {
+      "id": "gathering_art",
+      "name": "聚灵术",
+      "type": "passive",
+      "description": "被动提升星元获取10%",
+      "effects": { "starYuanGainPct": 0.10 },
+      "cooldown": 0,
+      "unlockCondition": null,
+      "fragmentRequired": 0
+    },
+    "iron_wall_art": {
+      "id": "iron_wall_art",
+      "name": "铁壁功",
+      "type": "passive",
+      "description": "被动提升防御15%",
+      "effects": { "defensePct": 0.15 },
+      "cooldown": 0,
+      "unlockCondition": null,
+      "fragmentRequired": 0
+    }
+  }
+}

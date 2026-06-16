@@ -1,0 +1,64 @@
+{
+  "_comment": "商店商品配置表 - 数据源：05-商店系统.md",
+  "version": 1,
+  "categories": {
+    "resources": {
+      "name": "资源区",
+      "items": {
+        "iron_ore_pack": {
+          "id": "iron_ore_pack",
+          "name": "铁矿包×50",
+          "type": "resource",
+          "giveItems": { "iron_ore": 50 },
+          "price": { "starCoins": 500 },
+          "unlockCondition": { "level": 3 }
+        },
+        "copper_ore_pack": {
+          "id": "copper_ore_pack",
+          "name": "铜矿包×50",
+          "type": "resource",
+          "giveItems": { "copper_ore": 50 },
+          "price": { "starCoins": 600 },
+          "unlockCondition": { "level": 3 }
+        },
+        "enhancement_stone_pack": {
+          "id": "enhancement_stone_pack",
+          "name": "强化石×5",
+          "type": "resource",
+          "giveItems": { "enhancementStone": 5 },
+          "price": { "starCoins": 1000 },
+          "unlockCondition": { "level": 5 }
+        }
+      }
+    },
+    "skills": {
+      "name": "功法区",
+      "items": {
+        "basic_sword_art": {
+          "id": "basic_sword_art",
+          "name": "基础剑诀",
+          "type": "skill",
+          "skillId": "basic_sword_art",
+          "price": { "starCoins": 2000 },
+          "unlockCondition": { "level": 3 }
+        },
+        "gathering_art": {
+          "id": "gathering_art",
+          "name": "聚灵术",
+          "type": "skill",
+          "skillId": "gathering_art",
+          "price": { "starCoins": 3000 },
+          "unlockCondition": { "level": 5 }
+        },
+        "iron_wall_art": {
+          "id": "iron_wall_art",
+          "name": "铁壁功",
+          "type": "skill",
+          "skillId": "iron_wall_art",
+          "price": { "starCoins": 3000 },
+          "unlockCondition": { "level": 5 }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "_comment": "怪物模板配置表 - 数据源：06-战斗与Boss系统.md",
+  "version": 1,
+  "damageFormula": {
+    "_comment": "actualDmg = attack × skillMultiplier × (1 - reductionRate) × critCoeff",
+    "reductionRate": "def / (def + 1000 + attackerLevel × 50)",
+    "critBase": 1.5,
+    "minDamageRate": 0.01
+  },
+  "monsters": {
+    "origin_slime": {
+      "id": "origin_slime",
+      "name": "起源史莱姆",
+      "planet": "origin",
+      "type": "normal",
+      "stats": { "attack": 5, "defense": 2, "hp": 30 },
+      "skills": [],
+      "drops": {
+        "starCoins": { "min": 10, "max": 30 },
+        "herb": { "chance": 0.3, "min": 1, "max": 3 }
+      }
+    },
+    "origin_goblin": {
+      "id": "origin_goblin",
+      "name": "起源妖兽",
+      "planet": "origin",
+      "type": "normal",
+      "stats": { "attack": 8, "defense": 4, "hp": 50 },
+      "skills": [],
+      "drops": {
+        "starCoins": { "min": 20, "max": 50 },
+        "stone": { "chance": 0.4, "min": 1, "max": 3 },
+        "wood": { "chance": 0.3, "min": 1, "max": 2 }
+      }
+    },
+    "xuantie_beetle": {
+      "id": "xuantie_beetle",
+      "name": "玄铁甲虫",
+      "planet": "xuantie",
+      "type": "normal",
+      "stats": { "attack": 15, "defense": 10, "hp": 100 },
+      "skills": [],
+      "drops": {
+        "starCoins": { "min": 40, "max": 100 },
+        "iron_ore": { "chance": 0.5, "min": 2, "max": 5 },
+        "enhancementStone": { "chance": 0.05, "min": 1, "max": 1 }
+      }
+    },
+    "xuantie_golem": {
+      "id": "xuantie_golem",
+      "name": "玄铁傀儡",
+      "planet": "xuantie",
+      "type": "normal",
+      "stats": { "attack": 20, "defense": 15, "hp": 150 },
+      "skills": [],
+      "drops": {
+        "starCoins": { "min": 60, "max": 150 },
+        "copper_ore": { "chance": 0.5, "min": 2, "max": 5 },
+        "star_dust": { "chance": 0.2, "min": 1, "max": 3 }
+      }
+    }
+  },
+  "bosses": {
+    "xuantie_behemoth": {
+      "id": "xuantie_behemoth",
+      "name": "矿脉巨兽",
+      "planet": "xuantie",
+      "type": "boss",
+      "stats": { "attack": 30, "defense": 20, "hp": 5000 },
+      "skills": [
+        { "id": "rock_throw", "name": "岩石投掷", "damageMultiplier": 1.5, "cooldown": 5 },
+        { "id": "ground_slam", "name": "地裂冲击", "damageMultiplier": 2.5, "cooldown": 12 },
+        { "id": "ore_armor", "name": "矿甲", "defenseMultiplier": 1.5, "duration": 8, "cooldown": 20 },
+        { "id": "enrage", "name": "狂暴", "attackMultiplier": 1.5, "triggerHpPercent": 0.2, "type": "passive" }
+      ],
+      "drops": {
+        "starCoins": { "min": 500, "max": 1000 },
+        "xuantie_essence": { "min": 1, "max": 2 },
+        "enhancementStone": { "chance": 0.6, "min": 2, "max": 4 },
+        "spiritStones": { "chance": 0.3, "min": 1, "max": 2 },
+        "behemoth_core": { "chance": 0.05, "min": 1, "max": 1 }
+      },
+      "refreshInterval": 180,
+      "unlockCondition": { "level": 5 }
+    }
+  }
+}
