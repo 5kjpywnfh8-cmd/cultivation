@@ -37,7 +37,10 @@ export type AffixType =
   | 'critRate' | 'critDmg' | 'penetration' | 'dodge'
   | 'starYuanGain' | 'gatherSpeed' | 'prodSpeed'
   | 'dropRate' | 'cdReduction' | 'skillDmg'
-  | 'lifeSteal' | 'dmgReduction' | 'allStats';
+  | 'lifeSteal' | 'dmgReduction' | 'allStats'
+  | 'berserkerRage' | 'ironWall' | 'lifeDrain'
+  | 'critMaster' | 'gatherMaster' | 'prodMaster'
+  | 'luckyStar' | 'endlessPower';
 
 export interface Affix {
   type: AffixType;
@@ -101,6 +104,9 @@ export interface Device {
 
 // ==================== 星球系统 ====================
 
+/** 天气类型 */
+export type WeatherType = 'normal' | 'rain' | 'thunderstorm' | 'spatialRift' | 'eruption' | 'blizzard' | 'cloudSea' | 'voidRift';
+
 export type PlanetId =
   | 'origin' | 'xuantie' | 'lingzhi' | 'youming'
   | 'tianjing' | 'huoshan' | 'bingfeng' | 'hundun'
@@ -140,7 +146,7 @@ export interface Planet {
   bossLastKilledAt: number;
   hiddenBossUnlocked: boolean;
   hiddenBossProgress: Record<string, number>;
-  currentWeather: 'normal' | 'rain' | 'thunderstorm' | 'spatialRift';
+  currentWeather: WeatherType;
   weatherRemaining: number;
   resourceReserves: Record<string, {
     current: number;
@@ -360,7 +366,7 @@ export interface CodexState {
 // ==================== 天气 ====================
 
 export interface WeatherState {
-  currentWeathers: Record<PlanetId, 'normal' | 'rain' | 'thunderstorm' | 'spatialRift'>;
+  currentWeathers: Record<PlanetId, WeatherType>;
   weatherRemaining: Record<PlanetId, number>;
   nextWeatherEventAt: number;
   specialWeatherGatherCount: number;
@@ -378,6 +384,13 @@ export interface PlayerStats {
   dodgeRate: number;
   hpRegen: number;
   currentHp: number;
+}
+
+/** 境界基础属性（不含装备加成，用于属性计算基准） */
+export interface BaseStats {
+  attack: number;
+  defense: number;
+  hp: number;
 }
 
 // ==================== 统计 ====================
@@ -436,10 +449,14 @@ export interface PlayerState {
   lastSavedAt: number;
   lastOnlineAt: number;
   playerName?: string;
+  /** 新手引导是否已完成/跳过 */
+  tutorialCompleted: boolean;
 
   // 核心数据
   realm: RealmProgress;
   stats: PlayerStats;
+  /** 境界基础属性（不含装备加成，用于属性计算基准） */
+  baseStats: BaseStats;
   currency: Currency;
   inventory: Inventory;
   equippedGear: Record<EquipmentSlot, string | null>;
@@ -531,6 +548,7 @@ export function createNewPlayerState(): PlayerState {
     createdAt: now,
     lastSavedAt: now,
     lastOnlineAt: now,
+    tutorialCompleted: false,
 
     realm: { realm: '练气', tier: 1, level: 1, starYuan: 0, starYuanToNext: 100 },
     stats: {
@@ -538,6 +556,7 @@ export function createNewPlayerState(): PlayerState {
       critRate: 0, critDamage: 0, penetration: 0,
       dodgeRate: 0, hpRegen: 1, currentHp: 50,
     },
+    baseStats: { attack: 15, defense: 8, hp: 50 },
     currency: { starCoins: 0, spiritStones: 0, daoYun: 0 },
     inventory: { items: {}, capacity: 0 },
     equippedGear: {
@@ -562,33 +581,60 @@ export function createNewPlayerState(): PlayerState {
     },
 
     planets: {
-      origin: createDefaultPlanet('origin', '起源星', true),
-      xuantie: createDefaultPlanet('xuantie', '玄铁星', true, {
-        iron_ore:   { current: 100000, max: 100000, regenRate: 1000 },
-        copper_ore: { current: 100000, max: 100000, regenRate: 1000 },
-        star_dust:  { current: 100000, max: 100000, regenRate: 1000 },
+      origin: createDefaultPlanet('origin', '起源星', true, {
+        iron_ore:      { current: 50000, max: 50000, regenRate: 500 },
+        copper_ore:    { current: 50000, max: 50000, regenRate: 500 },
+        star_dust:     { current: 50000, max: 50000, regenRate: 500 },
+        wood_crystal:  { current: 50000, max: 50000, regenRate: 500 },
+        spirit_liquid: { current: 50000, max: 50000, regenRate: 500 },
       }),
-      lingzhi: createDefaultPlanet('lingzhi', '灵植星', false, {
+      xuantie: createDefaultPlanet('xuantie', '玄铁星', true, {
+        refined_iron: { current: 100000, max: 100000, regenRate: 1000 },
+        iron_ore:     { current: 100000, max: 100000, regenRate: 1000 },
+        copper_ore:   { current: 100000, max: 100000, regenRate: 1000 },
+        star_dust:    { current: 100000, max: 100000, regenRate: 1000 },
+      }),
+      lingzhi: createDefaultPlanet('lingzhi', '灵植星', true, {
         wood_crystal:  { current: 100000, max: 100000, regenRate: 1000 },
         spirit_liquid: { current: 100000, max: 100000, regenRate: 1000 },
         spore:         { current: 30000, max: 30000, regenRate: 0 },
+        life_dew:      { current: 20000, max: 20000, regenRate: 0 },
       }),
       youming: createDefaultPlanet('youming', '幽冥星', false, {
+        soul_stone: { current: 80000, max: 80000, regenRate: 800 },
         dark_moss:  { current: 80000, max: 80000, regenRate: 800 },
-        soul_stone: { current: 25000, max: 25000, regenRate: 0 },
+        ghost_fire: { current: 25000, max: 25000, regenRate: 0 },
       }),
       tianjing: createDefaultPlanet('tianjing', '天晶星', false, {
-        sky_crystal:    { current: 25000, max: 25000, regenRate: 0 },
+        sky_crystal:    { current: 50000, max: 50000, regenRate: 0 },
         thunder_marrow: { current: 25000, max: 25000, regenRate: 0 },
+        arc_stone:      { current: 50000, max: 50000, regenRate: 0 },
       }),
-      huoshan: createDefaultPlanet('huoshan', '火山星', false),
-      bingfeng: createDefaultPlanet('bingfeng', '冰封星', false),
+      huoshan: createDefaultPlanet('huoshan', '火山星', false, {
+        fire_crystal:  { current: 50000, max: 50000, regenRate: 0 },
+        lava_essence:  { current: 30000, max: 30000, regenRate: 0 },
+        earth_fire:    { current: 10000, max: 10000, regenRate: 0 },
+      }),
+      bingfeng: createDefaultPlanet('bingfeng', '冰封星', false, {
+        ice_stone:     { current: 50000, max: 50000, regenRate: 0 },
+        ice_soul:      { current: 30000, max: 30000, regenRate: 0 },
+        frost_essence: { current: 10000, max: 10000, regenRate: 0 },
+      }),
       hundun: createDefaultPlanet('hundun', '混沌星', false, {
-        chaos_stone: { current: 5000, max: 5000, regenRate: 0 },
-        void_vine:   { current: 5000, max: 5000, regenRate: 0 },
+        chaos_stone:  { current: 10000, max: 10000, regenRate: 0 },
+        void_vine:    { current: 10000, max: 10000, regenRate: 0 },
+        dao_fragment: { current: 5000, max: 5000, regenRate: 0 },
       }),
-      fukong: createDefaultPlanet('fukong', '浮空星', false),
-      shenyuan: createDefaultPlanet('shenyuan', '深渊星', false),
+      fukong: createDefaultPlanet('fukong', '浮空星', false, {
+        wind_stone:    { current: 30000, max: 30000, regenRate: 0 },
+        cloud_crystal: { current: 30000, max: 30000, regenRate: 0 },
+        sky_water:     { current: 10000, max: 10000, regenRate: 0 },
+      }),
+      shenyuan: createDefaultPlanet('shenyuan', '深渊星', false, {
+        abyss_stone:   { current: 10000, max: 10000, regenRate: 0 },
+        chaos_origin:  { current: 5000, max: 5000, regenRate: 0 },
+        void_essence:  { current: 3000, max: 3000, regenRate: 0 },
+      }),
     },
 
     starShip: {
@@ -679,7 +725,7 @@ export function createNewPlayerState(): PlayerState {
       totalAffixCount: 0, specialWeatherGatherCount: 0, totalDungeonClears: 0,
       learnedSkillCount: 0, highestDamage: 0,
       consecutiveLoginDays: 0, skillKillCount: 0,
-      killByType: {}, noHitBossKills: 0, speedKillBoss: 0, fastestDungeonClear: Infinity,
+      killByType: {}, noHitBossKills: 0, speedKillBoss: 0, fastestDungeonClear: 999999,
       uniqueEquipmentsCollected: 0, qualityEquipments: {}, setsCompleted: 0, uniqueMaterialsCollected: 0,
       totalAreasExplored: 0, areasExploredPerPlanet: {},
     },

@@ -1,64 +1,20 @@
 {
-  "_comment": "怪物模板配置表 - 数据源：06-战斗与Boss系统.md",
-  "version": 1,
+  "_comment": "怪物/Boss配置表 - 数据源：06-战斗与Boss系统.md",
+  "version": 2,
   "damageFormula": {
-    "_comment": "actualDmg = attack × skillMultiplier × (1 - reductionRate) × critCoeff",
     "reductionRate": "def / (def + 1000 + attackerLevel × 50)",
     "critBase": 1.5,
     "minDamageRate": 0.01
   },
   "monsters": {
-    "origin_slime": {
-      "id": "origin_slime",
-      "name": "起源史莱姆",
-      "planet": "origin",
-      "type": "normal",
-      "stats": { "attack": 5, "defense": 2, "hp": 30 },
-      "skills": [],
-      "drops": {
-        "starCoins": { "min": 10, "max": 30 },
-        "herb": { "chance": 0.3, "min": 1, "max": 3 }
-      }
-    },
-    "origin_goblin": {
-      "id": "origin_goblin",
-      "name": "起源妖兽",
-      "planet": "origin",
-      "type": "normal",
-      "stats": { "attack": 8, "defense": 4, "hp": 50 },
-      "skills": [],
-      "drops": {
-        "starCoins": { "min": 20, "max": 50 },
-        "stone": { "chance": 0.4, "min": 1, "max": 3 },
-        "wood": { "chance": 0.3, "min": 1, "max": 2 }
-      }
-    },
-    "xuantie_beetle": {
-      "id": "xuantie_beetle",
-      "name": "玄铁甲虫",
-      "planet": "xuantie",
-      "type": "normal",
-      "stats": { "attack": 15, "defense": 10, "hp": 100 },
-      "skills": [],
-      "drops": {
-        "starCoins": { "min": 40, "max": 100 },
-        "iron_ore": { "chance": 0.5, "min": 2, "max": 5 },
-        "enhancementStone": { "chance": 0.05, "min": 1, "max": 1 }
-      }
-    },
-    "xuantie_golem": {
-      "id": "xuantie_golem",
-      "name": "玄铁傀儡",
-      "planet": "xuantie",
-      "type": "normal",
-      "stats": { "attack": 20, "defense": 15, "hp": 150 },
-      "skills": [],
-      "drops": {
-        "starCoins": { "min": 60, "max": 150 },
-        "copper_ore": { "chance": 0.5, "min": 2, "max": 5 },
-        "star_dust": { "chance": 0.2, "min": 1, "max": 3 }
-      }
-    }
+    "origin_slime": { "id": "origin_slime", "name": "起源史莱姆", "planet": "origin", "type": "normal", "stats": { "attack": 5, "defense": 2, "hp": 30 }, "skills": [], "drops": { "starCoins": { "min": 10, "max": 30 }, "herb": { "chance": 0.3, "min": 1, "max": 3 } } },
+    "origin_goblin": { "id": "origin_goblin", "name": "起源妖兽", "planet": "origin", "type": "normal", "stats": { "attack": 8, "defense": 4, "hp": 50 }, "skills": [], "drops": { "starCoins": { "min": 20, "max": 50 }, "stone": { "chance": 0.4, "min": 1, "max": 3 } } },
+    "xuantie_beetle": { "id": "xuantie_beetle", "name": "玄铁甲虫", "planet": "xuantie", "type": "normal", "stats": { "attack": 15, "defense": 10, "hp": 100 }, "skills": [], "drops": { "starCoins": { "min": 40, "max": 100 }, "iron_ore": { "chance": 0.5, "min": 2, "max": 5 } } },
+    "xuantie_golem": { "id": "xuantie_golem", "name": "玄铁傀儡", "planet": "xuantie", "type": "normal", "stats": { "attack": 20, "defense": 15, "hp": 150 }, "skills": [], "drops": { "starCoins": { "min": 60, "max": 150 }, "copper_ore": { "chance": 0.5, "min": 2, "max": 5 } } },
+    "lingzhi_vine": { "id": "lingzhi_vine", "name": "灵植藤蔓", "planet": "lingzhi", "type": "normal", "stats": { "attack": 12, "defense": 8, "hp": 80 }, "skills": [], "drops": { "starCoins": { "min": 30, "max": 80 }, "wood_crystal": { "chance": 0.5, "min": 1, "max": 3 } } },
+    "lingzhi_guardian": { "id": "lingzhi_guardian", "name": "灵植守卫", "planet": "lingzhi", "type": "normal", "stats": { "attack": 18, "defense": 12, "hp": 120 }, "skills": [], "drops": { "starCoins": { "min": 50, "max": 120 }, "spirit_liquid": { "chance": 0.4, "min": 1, "max": 3 } } },
+    "youming_ghost": { "id": "youming_ghost", "name": "幽冥幽灵", "planet": "youming", "type": "normal", "stats": { "attack": 50, "defense": 30, "hp": 500 }, "skills": [], "drops": { "starCoins": { "min": 100, "max": 250 }, "dark_moss": { "chance": 0.5, "min": 2, "max": 5 } } },
+    "youming_knight": { "id": "youming_knight", "name": "幽冥骑士", "planet": "youming", "type": "normal", "stats": { "attack": 60, "defense": 40, "hp": 600 }, "skills": [], "drops": { "starCoins": { "min": 150, "max": 300 }, "soul_stone": { "chance": 0.3, "min": 1, "max": 3 } } }
   },
   "bosses": {
     "xuantie_behemoth": {
@@ -68,20 +24,124 @@
       "type": "boss",
       "stats": { "attack": 30, "defense": 20, "hp": 5000 },
       "skills": [
-        { "id": "rock_throw", "name": "岩石投掷", "damageMultiplier": 1.5, "cooldown": 5 },
-        { "id": "ground_slam", "name": "地裂冲击", "damageMultiplier": 2.5, "cooldown": 12 },
-        { "id": "ore_armor", "name": "矿甲", "defenseMultiplier": 1.5, "duration": 8, "cooldown": 20 },
-        { "id": "enrage", "name": "狂暴", "attackMultiplier": 1.5, "triggerHpPercent": 0.2, "type": "passive" }
+        { "id": "rock_throw", "name": "岩石投掷", "damageMultiplier": 1.5, "cooldown": 5, "priority": 1 },
+        { "id": "ground_slam", "name": "地裂冲击", "damageMultiplier": 2.5, "cooldown": 12, "effectType": "stun", "effectDuration": 1, "priority": 2 },
+        { "id": "ore_armor", "name": "矿甲", "defenseMultiplier": 1.5, "duration": 8, "cooldown": 20, "priority": 3 },
+        { "id": "enrage", "name": "狂暴", "attackMultiplier": 1.5, "triggerHpPercent": 0.2, "cooldown": 999, "priority": 4 }
       ],
-      "drops": {
-        "starCoins": { "min": 500, "max": 1000 },
-        "xuantie_essence": { "min": 1, "max": 2 },
-        "enhancementStone": { "chance": 0.6, "min": 2, "max": 4 },
-        "spiritStones": { "chance": 0.3, "min": 1, "max": 2 },
-        "behemoth_core": { "chance": 0.05, "min": 1, "max": 1 }
-      },
+      "drops": [
+        { "id": "starCoins", "chance": 1.0, "min": 500, "max": 1000 },
+        { "id": "xuantie_essence", "chance": 1.0, "min": 1, "max": 2 },
+        { "id": "enhancementStone", "chance": 0.6, "min": 2, "max": 4 },
+        { "id": "spiritStones", "chance": 0.3, "min": 1, "max": 2 },
+        { "id": "behemoth_core", "chance": 0.05, "min": 1, "max": 1 }
+      ],
       "refreshInterval": 180,
       "unlockCondition": { "level": 5 }
+    },
+    "xuantie_behemoth_true": {
+      "id": "xuantie_behemoth_true",
+      "name": "矿脉巨兽·真身",
+      "planet": "xuantie",
+      "type": "boss",
+      "stats": { "attack": 60, "defense": 35, "hp": 15000 },
+      "skills": [
+        { "id": "rock_throw", "name": "岩石投掷", "damageMultiplier": 1.5, "cooldown": 5, "priority": 1 },
+        { "id": "ground_slam", "name": "地裂冲击", "damageMultiplier": 2.5, "cooldown": 12, "effectType": "stun", "effectDuration": 1, "priority": 2 },
+        { "id": "ore_armor", "name": "矿甲", "defenseMultiplier": 1.5, "duration": 8, "cooldown": 20, "priority": 3 },
+        { "id": "enrage", "name": "狂暴", "attackMultiplier": 1.5, "triggerHpPercent": 0.3, "cooldown": 999, "priority": 4 }
+      ],
+      "drops": [
+        { "id": "starCoins", "chance": 1.0, "min": 1000, "max": 2000 },
+        { "id": "xuantie_essence", "chance": 1.0, "min": 1, "max": 2 },
+        { "id": "enhancementStone", "chance": 0.6, "min": 2, "max": 4 },
+        { "id": "xuantie_sword_blueprint", "chance": 0.2, "min": 1, "max": 1 },
+        { "id": "spiritStones", "chance": 0.3, "min": 1, "max": 2 },
+        { "id": "behemoth_core", "chance": 0.05, "min": 1, "max": 1 }
+      ],
+      "refreshInterval": 180,
+      "unlockCondition": { "level": 10 }
+    },
+    "lingzhi_tree": {
+      "id": "lingzhi_tree",
+      "name": "万藤妖树",
+      "planet": "lingzhi",
+      "type": "boss",
+      "stats": { "attack": 45, "defense": 25, "hp": 8000 },
+      "skills": [
+        { "id": "vine_whip", "name": "藤鞭", "damageMultiplier": 1.8, "cooldown": 4, "priority": 1 },
+        { "id": "root_bind", "name": "根须缠绕", "effectType": "slow", "effectDuration": 3, "cooldown": 10, "priority": 2 },
+        { "id": "photosynthesis", "name": "光合作用", "damageMultiplier": 0, "cooldown": 15, "priority": 3 }
+      ],
+      "drops": [
+        { "id": "starCoins", "chance": 1.0, "min": 800, "max": 1500 },
+        { "id": "wood_essence", "chance": 1.0, "min": 1, "max": 3 },
+        { "id": "enhancementStone", "chance": 0.5, "min": 2, "max": 5 },
+        { "id": "spiritStones", "chance": 0.4, "min": 1, "max": 3 }
+      ],
+      "refreshInterval": 300,
+      "unlockCondition": { "level": 10 }
+    },
+    "youming_guardian": {
+      "id": "youming_guardian",
+      "name": "冥王守卫",
+      "planet": "youming",
+      "type": "boss",
+      "stats": { "attack": 100, "defense": 60, "hp": 25000 },
+      "skills": [
+        { "id": "soul_strike", "name": "灵魂打击", "damageMultiplier": 2.0, "cooldown": 6, "priority": 1 },
+        { "id": "death_mark", "name": "死亡标记", "effectType": "bleed", "effectDuration": 5, "cooldown": 15, "priority": 2 },
+        { "id": "nether_shield", "name": "冥界护盾", "defenseMultiplier": 2.0, "duration": 5, "cooldown": 20, "priority": 3 }
+      ],
+      "drops": [
+        { "id": "starCoins", "chance": 1.0, "min": 2000, "max": 4000 },
+        { "id": "ghost_fire", "chance": 1.0, "min": 1, "max": 3 },
+        { "id": "enhancementStone", "chance": 0.5, "min": 3, "max": 6 },
+        { "id": "spiritStones", "chance": 0.5, "min": 2, "max": 4 }
+      ],
+      "refreshInterval": 600,
+      "unlockCondition": { "level": 21 }
+    },
+    "tianjing_thunderlord": {
+      "id": "tianjing_thunderlord",
+      "name": "雷狱天君",
+      "planet": "tianjing",
+      "type": "boss",
+      "stats": { "attack": 200, "defense": 120, "hp": 60000 },
+      "skills": [
+        { "id": "thunder_bolt", "name": "雷霆一击", "damageMultiplier": 2.5, "cooldown": 5, "priority": 1 },
+        { "id": "chain_lightning", "name": "连锁闪电", "damageMultiplier": 1.8, "effectType": "paralyze", "effectDuration": 2, "cooldown": 12, "priority": 2 },
+        { "id": "thunder_armor", "name": "雷电护甲", "defenseMultiplier": 1.8, "duration": 6, "cooldown": 18, "priority": 3 }
+      ],
+      "drops": [
+        { "id": "starCoins", "chance": 1.0, "min": 5000, "max": 10000 },
+        { "id": "thunder_marrow", "chance": 1.0, "min": 1, "max": 3 },
+        { "id": "enhancementStone", "chance": 0.5, "min": 4, "max": 8 },
+        { "id": "spiritStones", "chance": 0.5, "min": 3, "max": 6 }
+      ],
+      "refreshInterval": 900,
+      "unlockCondition": { "level": 31 }
+    },
+    "hundun_lord": {
+      "id": "hundun_lord",
+      "name": "混沌主宰",
+      "planet": "hundun",
+      "type": "boss",
+      "stats": { "attack": 400, "defense": 250, "hp": 150000 },
+      "skills": [
+        { "id": "chaos_bolt", "name": "混沌弹", "damageMultiplier": 3.0, "cooldown": 6, "priority": 1 },
+        { "id": "void_rift", "name": "虚空裂缝", "damageMultiplier": 2.0, "effectType": "burn", "effectDuration": 4, "cooldown": 10, "priority": 2 },
+        { "id": "chaos_shield", "name": "混沌护盾", "defenseMultiplier": 2.5, "duration": 8, "cooldown": 25, "priority": 3 },
+        { "id": "world_breaker", "name": "破界", "damageMultiplier": 5.0, "effectType": "stun", "effectDuration": 3, "cooldown": 30, "priority": 4 }
+      ],
+      "drops": [
+        { "id": "starCoins", "chance": 1.0, "min": 10000, "max": 20000 },
+        { "id": "dao_fragment", "chance": 1.0, "min": 1, "max": 3 },
+        { "id": "enhancementStone", "chance": 0.5, "min": 5, "max": 10 },
+        { "id": "spiritStones", "chance": 0.5, "min": 5, "max": 10 }
+      ],
+      "refreshInterval": 1200,
+      "unlockCondition": { "level": 41 }
     }
   }
 }

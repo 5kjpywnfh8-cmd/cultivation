@@ -28,13 +28,14 @@ export function sciFrom(n: number): SciNum {
   const abs = Math.abs(n);
   const exponent = Math.floor(Math.log10(abs));
   const mantissa = abs / Math.pow(10, exponent);
-  return { mantissa, exponent, sign, isZero: false };
+  // 规范化以处理浮点精度边缘情况
+  return normalize({ mantissa, exponent, sign, isZero: false });
 }
 
-/** 从 mantissa + exponent 直接创建 */
+/** 从 mantissa + exponent 直接创建（自动规范化） */
 export function sciOf(mantissa: number, exponent: number, sign: -1 | 1 = 1): SciNum {
   if (mantissa === 0) return sciZero();
-  return { mantissa, exponent, sign, isZero: false };
+  return normalize({ mantissa, exponent, sign, isZero: false });
 }
 
 // ==================== 转换 ====================
@@ -50,8 +51,10 @@ export function sciToNumber(s: SciNum): number {
   if (s.isZero) return 0;
   const val = s.mantissa * Math.pow(10, s.exponent);
   const result = s.sign * val;
-  // 溢出保护
-  if (!isFinite(result)) return s.sign * Number.MAX_SAFE_INTEGER;
+  // 溢出保护：Infinity 或超出安全整数范围
+  if (!isFinite(result) || Math.abs(result) > Number.MAX_SAFE_INTEGER) {
+    return s.sign * Number.MAX_SAFE_INTEGER;
+  }
   return result;
 }
 
@@ -246,14 +249,17 @@ export function sciDisplay(s: SciNum, decimals = 2): string {
   } else if (e < 8) {
     // 万
     const val = s.mantissa * Math.pow(10, e - 4);
+    if (!isFinite(val)) return signStr + s.mantissa.toFixed(decimals) + 'e' + e;
     return signStr + val.toFixed(decimals) + '万';
   } else if (e < 12) {
     // 亿
     const val = s.mantissa * Math.pow(10, e - 8);
+    if (!isFinite(val)) return signStr + s.mantissa.toFixed(decimals) + 'e' + e;
     return signStr + val.toFixed(decimals) + '亿';
   } else if (e < 16) {
     // 兆
     const val = s.mantissa * Math.pow(10, e - 12);
+    if (!isFinite(val)) return signStr + s.mantissa.toFixed(decimals) + 'e' + e;
     return signStr + val.toFixed(decimals) + '兆';
   } else {
     // 科学计数法

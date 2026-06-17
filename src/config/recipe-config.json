@@ -1,0 +1,123 @@
+{
+  "_comment": "生产配方配置表 - 数据源：03-生产链系统.md",
+  "version": 1,
+  "devices": {
+    "smelter": {
+      "id": "smelter",
+      "name": "熔炼炉",
+      "unlockCondition": null,
+      "maxLevel": 5,
+      "speedBonusPerLevel": 0.20
+    },
+    "distiller": {
+      "id": "distiller",
+      "name": "蒸馏器",
+      "unlockCondition": { "level": 11 },
+      "maxLevel": 5,
+      "speedBonusPerLevel": 0.15
+    },
+    "extractor": {
+      "id": "extractor",
+      "name": "萃取机",
+      "unlockCondition": { "level": 11 },
+      "maxLevel": 5,
+      "speedBonusPerLevel": 0.15
+    },
+    "alchemyFurnace": {
+      "id": "alchemyFurnace",
+      "name": "炼丹炉",
+      "unlockCondition": { "level": 21 },
+      "maxLevel": 5,
+      "speedBonusPerLevel": 0.10,
+      "successBonusPerLevel": 0.10
+    },
+    "refiner": {
+      "id": "refiner",
+      "name": "精炼台",
+      "unlockCondition": { "level": 21 },
+      "maxLevel": 5,
+      "speedBonusPerLevel": 0.20
+    },
+    "forge": {
+      "id": "forge",
+      "name": "锻造台",
+      "unlockCondition": null,
+      "maxLevel": 5,
+      "speedBonusPerLevel": 0.20
+    }
+  },
+  "recipes": {
+    "refined_iron": {
+      "id": "refined_iron",
+      "name": "精铁",
+      "device": "smelter",
+      "inputs": { "iron_ore": 5 },
+      "output": { "refined_iron": 1 },
+      "baseTime": 30,
+      "unlockCondition": null
+    },
+    "copper_ingot": {
+      "id": "copper_ingot",
+      "name": "铜锭",
+      "device": "smelter",
+      "inputs": { "copper_ore": 5 },
+      "output": { "copper_ingot": 1 },
+      "baseTime": 30,
+      "unlockCondition": null
+    },
+    "spirit_liquid_refined": {
+      "id": "spirit_liquid_refined",
+      "name": "精炼灵液",
+      "device": "distiller",
+      "inputs": { "spirit_liquid": 3 },
+      "output": { "spirit_liquid_refined": 1 },
+      "baseTime": 60,
+      "unlockCondition": { "level": 11 }
+    },
+    "wood_essence": {
+      "id": "wood_essence",
+      "name": "木晶精华",
+      "device": "extractor",
+      "inputs": { "wood_crystal": 3 },
+      "output": { "wood_essence": 1 },
+      "baseTime": 60,
+      "unlockCondition": { "level": 11 }
+    },
+    "healing_pill": {
+      "id": "healing_pill",
+      "name": "回血丹",
+      "device": "alchemyFurnace",
+      "inputs": { "spirit_liquid_refined": 2, "herb": 5 },
+      "output": { "healing_pill": 1 },
+      "baseTime": 120,
+      "unlockCondition": { "level": 21 }
+    },
+    "gathering_pill": {
+      "id": "gathering_pill",
+      "name": "聚灵散",
+      "device": "alchemyFurnace",
+      "inputs": { "spirit_liquid_refined": 3, "star_dust": 10 },
+      "output": { "gathering_pill": 1 },
+      "baseTime": 120,
+      "unlockCondition": { "level": 21 }
+    },
+    "enhancement_stone": {
+      "id": "enhancement_stone",
+      "name": "强化石",
+      "device": "refiner",
+      "inputs": { "refined_iron": 2, "copper_ingot": 1 },
+      "output": { "enhancementStone": 1 },
+      "baseTime": 90,
+      "unlockCondition": { "level": 21 }
+    },
+    "xuantie_sword": {
+      "id": "xuantie_sword",
+      "name": "玄铁剑",
+      "device": "forge",
+      "inputs": { "refined_iron": 10, "copper_ingot": 5 },
+      "output": { "xuantie_sword": 1 },
+      "baseTime": 60,
+      "unlockCondition": null
+    }
+  }
+}

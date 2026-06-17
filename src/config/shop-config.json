@@ -1,63 +1,53 @@
 {
-  "_comment": "商店商品配置表 - 数据源：05-商店系统.md",
-  "version": 1,
+  "_comment": "商店商品配置表 - 数据源：05-商店系统.md + 2.8灵石阁",
+  "version": 2,
   "categories": {
     "resources": {
       "name": "资源区",
       "items": {
-        "iron_ore_pack": {
-          "id": "iron_ore_pack",
-          "name": "铁矿包×50",
-          "type": "resource",
-          "giveItems": { "iron_ore": 50 },
-          "price": { "starCoins": 500 },
-          "unlockCondition": { "level": 3 }
-        },
-        "copper_ore_pack": {
-          "id": "copper_ore_pack",
-          "name": "铜矿包×50",
-          "type": "resource",
-          "giveItems": { "copper_ore": 50 },
-          "price": { "starCoins": 600 },
-          "unlockCondition": { "level": 3 }
-        },
-        "enhancement_stone_pack": {
-          "id": "enhancement_stone_pack",
-          "name": "强化石×5",
-          "type": "resource",
-          "giveItems": { "enhancementStone": 5 },
-          "price": { "starCoins": 1000 },
-          "unlockCondition": { "level": 5 }
-        }
+        "iron_ore_pack": { "id": "iron_ore_pack", "name": "铁矿包×50", "type": "resource", "giveItems": { "iron_ore": 50 }, "price": { "starCoins": 500 }, "unlockCondition": { "level": 3 } },
+        "copper_ore_pack": { "id": "copper_ore_pack", "name": "铜矿包×50", "type": "resource", "giveItems": { "copper_ore": 50 }, "price": { "starCoins": 600 }, "unlockCondition": { "level": 3 } },
+        "enhancement_stone_pack": { "id": "enhancement_stone_pack", "name": "强化石×5", "type": "resource", "giveItems": { "enhancementStone": 5 }, "price": { "starCoins": 1000 }, "unlockCondition": { "level": 5 } },
+        "star_coin_exchange": { "id": "star_coin_exchange", "name": "灵石×1（10万星币）", "type": "resource", "giveItems": { "spiritStones": 1 }, "price": { "starCoins": 100000 }, "unlockCondition": { "level": 10 } }
       }
     },
     "skills": {
       "name": "功法区",
       "items": {
-        "basic_sword_art": {
-          "id": "basic_sword_art",
-          "name": "基础剑诀",
-          "type": "skill",
-          "skillId": "basic_sword_art",
-          "price": { "starCoins": 2000 },
-          "unlockCondition": { "level": 3 }
-        },
-        "gathering_art": {
-          "id": "gathering_art",
-          "name": "聚灵术",
-          "type": "skill",
-          "skillId": "gathering_art",
-          "price": { "starCoins": 3000 },
-          "unlockCondition": { "level": 5 }
-        },
-        "iron_wall_art": {
-          "id": "iron_wall_art",
-          "name": "铁壁功",
-          "type": "skill",
-          "skillId": "iron_wall_art",
-          "price": { "starCoins": 3000 },
-          "unlockCondition": { "level": 5 }
-        }
+        "basic_sword_art": { "id": "basic_sword_art", "name": "基础剑诀", "type": "skill", "skillId": "basic_sword_art", "price": { "starCoins": 2000 }, "unlockCondition": { "level": 3 } },
+        "gathering_art": { "id": "gathering_art", "name": "聚灵术", "type": "skill", "skillId": "gathering_art", "price": { "starCoins": 3000 }, "unlockCondition": { "level": 5 } },
+        "iron_wall_art": { "id": "iron_wall_art", "name": "铁壁功", "type": "skill", "skillId": "iron_wall_art", "price": { "starCoins": 3000 }, "unlockCondition": { "level": 5 } }
+      }
+    },
+    "spirit_materials": {
+      "name": "灵石阁-材料",
+      "currency": "spiritStones",
+      "items": {
+        "life_dew_pack": { "id": "life_dew_pack", "name": "生命露水×5", "type": "resource", "giveItems": { "life_dew": 5 }, "price": { "spiritStones": 3 }, "unlockCondition": { "level": 1 } },
+        "ghost_fire_pack": { "id": "ghost_fire_pack", "name": "幽冥火×3", "type": "resource", "giveItems": { "ghost_fire": 3 }, "price": { "spiritStones": 5 }, "unlockCondition": { "level": 21 } },
+        "arc_stone_pack": { "id": "arc_stone_pack", "name": "电弧石×3", "type": "resource", "giveItems": { "arc_stone": 3 }, "price": { "spiritStones": 5 }, "unlockCondition": { "level": 31 } },
+        "dao_fragment_pack": { "id": "dao_fragment_pack", "name": "道韵碎片×2", "type": "resource", "giveItems": { "dao_fragment": 2 }, "price": { "spiritStones": 8 }, "unlockCondition": { "level": 41 } },
+        "void_vine_pack": { "id": "void_vine_pack", "name": "虚空藤×3", "type": "resource", "giveItems": { "void_vine": 3 }, "price": { "spiritStones": 5 }, "unlockCondition": { "level": 41 } }
+      }
+    },
+    "spirit_blueprints": {
+      "name": "灵石阁-蓝图",
+      "currency": "spiritStones",
+      "items": {
+        "auto_collect_origin": { "id": "auto_collect_origin", "name": "起源星自动采集蓝图", "type": "blueprint", "giveItems": { "blueprint_auto_origin": 1 }, "price": { "spiritStones": 10 }, "unlockCondition": { "level": 5 } },
+        "auto_collect_xuantie": { "id": "auto_collect_xuantie", "name": "玄铁星自动采集蓝图", "type": "blueprint", "giveItems": { "blueprint_auto_xuantie": 1 }, "price": { "spiritStones": 15 }, "unlockCondition": { "level": 10 } },
+        "batch_produce": { "id": "batch_produce", "name": "批量生产蓝图", "type": "blueprint", "giveItems": { "blueprint_batch": 1 }, "price": { "spiritStones": 20 }, "unlockCondition": { "level": 21 } }
+      }
+    },
+    "spirit_skills": {
+      "name": "灵石阁-功法",
+      "currency": "spiritStones",
+      "items": {
+        "sword_dance": { "id": "sword_dance", "name": "御剑术", "type": "skill", "skillId": "sword_dance", "price": { "spiritStones": 15 }, "unlockCondition": { "level": 11 } },
+        "diamond_body": { "id": "diamond_body", "name": "金刚护体", "type": "skill", "skillId": "diamond_body", "price": { "spiritStones": 25 }, "unlockCondition": { "level": 21 } },
+        "iron_shield": { "id": "iron_shield", "name": "天罡护体", "type": "skill", "skillId": "iron_shield", "price": { "spiritStones": 20 }, "unlockCondition": { "level": 15 } },
+        "thunder_strike": { "id": "thunder_strike", "name": "雷霆万钧", "type": "skill", "skillId": "thunder_strike", "price": { "spiritStones": 30 }, "unlockCondition": { "level": 31 } },
+        "mixed_yuan": { "id": "mixed_yuan", "name": "混元功", "type": "skill", "skillId": "mixed_yuan", "price": { "spiritStones": 40 }, "unlockCondition": { "level": 41 } }
       }
     }
   }

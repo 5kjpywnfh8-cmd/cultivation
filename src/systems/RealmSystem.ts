@@ -200,15 +200,32 @@ export class RealmSystem implements GameSystem {
 
   /**
    * 更新玩家基础属性（基于境界）
+   *
+   * 写入 baseStats（境界基础值），然后重算最终属性（含装备加成）
    */
-  private updatePlayerStats(): void {
+  updatePlayerStats(): void {
     const stats = this.getCurrentStats();
     if (!stats) return;
 
-    this.state.stats.attack = stats.attack;
-    this.state.stats.defense = stats.defense;
-    this.state.stats.hp = stats.hp;
-    this.state.stats.currentHp = stats.hp;
+    // 写入境界基础值
+    this.state.baseStats.attack = stats.attack;
+    this.state.baseStats.defense = stats.defense;
+    this.state.baseStats.hp = stats.hp;
+
+    // 重算最终属性
+    this.applyFinalStats();
+  }
+
+  /**
+   * 应用最终属性 = 基础属性（由其他系统叠加装备/功法加成）
+   *
+   * 基础属性先设为 baseStats，装备加成由 EquipmentSystem.recalculatePlayerStats 叠加
+   */
+  private applyFinalStats(): void {
+    this.state.stats.attack = this.state.baseStats.attack;
+    this.state.stats.defense = this.state.baseStats.defense;
+    this.state.stats.hp = this.state.baseStats.hp;
+    this.state.stats.currentHp = this.state.baseStats.hp;
   }
 
   /**

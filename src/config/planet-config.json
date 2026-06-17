@@ -1,16 +1,19 @@
 {
   "_comment": "星球资源配置表 - 数据源：02-星球与资源系统.md",
-  "version": 1,
+  "version": 2,
   "planets": {
     "origin": {
       "id": "origin",
       "name": "起源星",
-      "description": "新手星球，资源贫瘠但安全",
+      "description": "母星，环境温和，资源均衡",
       "unlockCondition": null,
+      "gatherMultiplier": 1.0,
       "resources": {
-        "stone": { "name": "石头", "baseRate": 5, "autoRate": 2.5, "maxReserve": 50000, "regenRate": 500, "type": "basic" },
-        "wood": { "name": "木材", "baseRate": 5, "autoRate": 2.5, "maxReserve": 50000, "regenRate": 500, "type": "basic" },
-        "herb": { "name": "灵草", "baseRate": 3, "autoRate": 1.5, "maxReserve": 30000, "regenRate": 300, "type": "basic" }
+        "iron_ore": { "name": "铁矿", "baseRate": 8, "autoRate": 4, "maxReserve": 50000, "regenRate": 500, "type": "basic" },
+        "copper_ore": { "name": "铜矿", "baseRate": 6, "autoRate": 3, "maxReserve": 50000, "regenRate": 500, "type": "basic" },
+        "star_dust": { "name": "星尘", "baseRate": 3, "autoRate": 1.5, "maxReserve": 50000, "regenRate": 500, "type": "basic" },
+        "wood_crystal": { "name": "木晶", "baseRate": 6, "autoRate": 3, "maxReserve": 50000, "regenRate": 500, "type": "basic" },
+        "spirit_liquid": { "name": "灵液", "baseRate": 5, "autoRate": 2.5, "maxReserve": 50000, "regenRate": 500, "type": "basic" }
       },
       "monsters": ["origin_slime", "origin_goblin"],
       "boss": null
@@ -18,15 +21,130 @@
     "xuantie": {
       "id": "xuantie",
       "name": "玄铁星",
-      "description": "矿产丰富的星球，有强大异兽",
+      "description": "矿产丰富，无植被",
       "unlockCondition": { "level": 3 },
+      "gatherMultiplier": 1.0,
       "resources": {
+        "refined_iron": { "name": "精铁", "baseRate": 4, "autoRate": 2, "maxReserve": 100000, "regenRate": 1000, "type": "basic" },
         "iron_ore": { "name": "铁矿", "baseRate": 8, "autoRate": 4, "maxReserve": 100000, "regenRate": 1000, "type": "basic" },
         "copper_ore": { "name": "铜矿", "baseRate": 6, "autoRate": 3, "maxReserve": 100000, "regenRate": 1000, "type": "basic" },
         "star_dust": { "name": "星尘", "baseRate": 3, "autoRate": 1.5, "maxReserve": 100000, "regenRate": 1000, "type": "basic" }
       },
       "monsters": ["xuantie_beetle", "xuantie_golem"],
       "boss": "xuantie_behemoth"
+    },
+    "lingzhi": {
+      "id": "lingzhi",
+      "name": "灵植星",
+      "description": "密林覆盖，灵气浓郁",
+      "unlockCondition": { "level": 1 },
+      "gatherMultiplier": 1.0,
+      "resources": {
+        "wood_crystal": { "name": "木晶", "baseRate": 6, "autoRate": 3, "maxReserve": 100000, "regenRate": 1000, "type": "basic" },
+        "spirit_liquid": { "name": "灵液", "baseRate": 5, "autoRate": 2.5, "maxReserve": 100000, "regenRate": 1000, "type": "basic" },
+        "spore": { "name": "孢子", "baseRate": 3, "autoRate": 1.5, "maxReserve": 30000, "regenRate": 0, "type": "rare" },
+        "life_dew": { "name": "生命露水", "baseRate": 2, "autoRate": 1, "maxReserve": 20000, "regenRate": 0, "type": "rare", "weatherRequired": "rain" }
+      },
+      "monsters": ["lingzhi_vine", "lingzhi_guardian"],
+      "boss": "lingzhi_tree"
+    },
+    "youming": {
+      "id": "youming",
+      "name": "幽冥星",
+      "description": "阴暗沼泽，亡灵游荡",
+      "unlockCondition": { "level": 21 },
+      "gatherMultiplier": 1.2,
+      "resources": {
+        "soul_stone": { "name": "魂石", "baseRate": 4, "autoRate": 2, "maxReserve": 80000, "regenRate": 800, "type": "basic" },
+        "dark_moss": { "name": "暗苔", "baseRate": 6, "autoRate": 3, "maxReserve": 80000, "regenRate": 800, "type": "basic" },
+        "ghost_fire": { "name": "幽冥火", "baseRate": 1, "autoRate": 0.5, "maxReserve": 25000, "regenRate": 0, "type": "rare" }
+      },
+      "monsters": ["youming_ghost", "youming_knight"],
+      "boss": "youming_guardian"
+    },
+    "tianjing": {
+      "id": "tianjing",
+      "name": "天晶星",
+      "description": "永恒雷暴，晶体地貌",
+      "unlockCondition": { "level": 31 },
+      "gatherMultiplier": 1.2,
+      "resources": {
+        "sky_crystal": { "name": "天晶", "baseRate": 4, "autoRate": 2, "maxReserve": 50000, "regenRate": 0, "type": "basic" },
+        "thunder_marrow": { "name": "雷髓", "baseRate": 2, "autoRate": 1, "maxReserve": 25000, "regenRate": 0, "type": "rare", "weatherRequired": "thunderstorm" },
+        "arc_stone": { "name": "电弧石", "baseRate": 2, "autoRate": 1, "maxReserve": 50000, "regenRate": 0, "type": "basic" }
+      },
+      "monsters": ["tianjing_elemental", "tianjing_golem"],
+      "boss": "tianjing_thunderlord"
+    },
+    "huoshan": {
+      "id": "huoshan",
+      "name": "火山星",
+      "description": "熔岩地狱，高温环境",
+      "unlockCondition": { "level": 21 },
+      "gatherMultiplier": 1.5,
+      "resources": {
+        "fire_crystal": { "name": "火晶石", "baseRate": 5, "autoRate": 2.5, "maxReserve": 50000, "regenRate": 0, "type": "basic" },
+        "lava_essence": { "name": "熔岩精华", "baseRate": 3, "autoRate": 1.5, "maxReserve": 30000, "regenRate": 0, "type": "basic" },
+        "earth_fire": { "name": "地心火", "baseRate": 1, "autoRate": 0.5, "maxReserve": 10000, "regenRate": 0, "type": "rare", "weatherRequired": "eruption" }
+      },
+      "monsters": ["huoshan_slime", "huoshan_golem"],
+      "boss": "huoshan_lord"
+    },
+    "bingfeng": {
+      "id": "bingfeng",
+      "name": "冰封星",
+      "description": "极寒冰原，冰川地貌",
+      "unlockCondition": { "level": 31 },
+      "gatherMultiplier": 1.8,
+      "resources": {
+        "ice_stone": { "name": "玄冰石", "baseRate": 4, "autoRate": 2, "maxReserve": 50000, "regenRate": 0, "type": "basic" },
+        "ice_soul": { "name": "冰魄", "baseRate": 3, "autoRate": 1.5, "maxReserve": 30000, "regenRate": 0, "type": "basic" },
+        "frost_essence": { "name": "寒霜精华", "baseRate": 1, "autoRate": 0.5, "maxReserve": 10000, "regenRate": 0, "type": "rare", "weatherRequired": "blizzard" }
+      },
+      "monsters": ["bingfeng_wolf", "bingfeng_golem"],
+      "boss": "bingfeng_dragon"
+    },
+    "hundun": {
+      "id": "hundun",
+      "name": "混沌星",
+      "description": "空间扭曲，资源随机刷新",
+      "unlockCondition": { "level": 41 },
+      "gatherMultiplier": 1.5,
+      "resources": {
+        "chaos_stone": { "name": "混沌石", "baseRate": 3, "autoRate": 1.5, "maxReserve": 10000, "regenRate": 0, "type": "rare" },
+        "void_vine": { "name": "虚空藤", "baseRate": 4, "autoRate": 2, "maxReserve": 10000, "regenRate": 0, "type": "rare" },
+        "dao_fragment": { "name": "道韵碎片", "baseRate": 0.5, "autoRate": 0.2, "maxReserve": 5000, "regenRate": 0, "type": "rare", "weatherRequired": "spatialRift" }
+      },
+      "monsters": ["hundun_beast", "hundun_rift"],
+      "boss": "hundun_lord"
+    },
+    "fukong": {
+      "id": "fukong",
+      "name": "浮空星",
+      "description": "天空之城，浮岛群落",
+      "unlockCondition": { "level": 41 },
+      "gatherMultiplier": 2.5,
+      "resources": {
+        "wind_stone": { "name": "风灵石", "baseRate": 4, "autoRate": 2, "maxReserve": 30000, "regenRate": 0, "type": "basic" },
+        "cloud_crystal": { "name": "云晶", "baseRate": 3, "autoRate": 1.5, "maxReserve": 30000, "regenRate": 0, "type": "basic" },
+        "sky_water": { "name": "天空之水", "baseRate": 2, "autoRate": 1, "maxReserve": 10000, "regenRate": 0, "type": "rare", "weatherRequired": "cloudSea" }
+      },
+      "monsters": ["fukong_bird", "fukong_elemental"],
+      "boss": "fukong_titan"
+    },
+    "shenyuan": {
+      "id": "shenyuan",
+      "name": "深渊星",
+      "description": "虚空深渊，空间崩塌",
+      "unlockCondition": { "level": 41 },
+      "gatherMultiplier": 3.0,
+      "resources": {
+        "abyss_stone": { "name": "深渊石", "baseRate": 3, "autoRate": 1.5, "maxReserve": 10000, "regenRate": 0, "type": "rare" },
+        "chaos_origin": { "name": "混沌本源", "baseRate": 2, "autoRate": 1, "maxReserve": 5000, "regenRate": 0, "type": "rare" },
+        "void_essence": { "name": "虚空精华", "baseRate": 0.5, "autoRate": 0.2, "maxReserve": 3000, "regenRate": 0, "type": "rare", "weatherRequired": "voidRift" }
+      },
+      "monsters": ["shenyuan_horror", "shenyuan_guardian"],
+      "boss": "shenyuan_abyssal"
     }
   },
   "resourceRegenRate": 0.01,

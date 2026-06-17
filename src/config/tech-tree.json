@@ -1,0 +1,26 @@
+{
+  "_comment": "科技树配置表 - 数据源：12-科技树系统.md",
+  "version": 1,
+  "nodes": {
+    "gather_t1": { "id": "gather_t1", "name": "基础采集", "branch": "gather", "tier": 1, "cost": 10, "prerequisites": [], "effects": { "gatherSpeed": 0.10 } },
+    "gather_t2": { "id": "gather_t2", "name": "高效采集", "branch": "gather", "tier": 2, "cost": 25, "prerequisites": ["gather_t1"], "effects": { "gatherSpeed": 0.20 } },
+    "gather_t3": { "id": "gather_t3", "name": "自动采集优化", "branch": "gather", "tier": 3, "cost": 50, "prerequisites": ["gather_t2"], "effects": { "autoCollectSpeed": 0.30 } },
+    "gather_t4": { "id": "gather_t4", "name": "资源探测", "branch": "gather", "tier": 4, "cost": 100, "prerequisites": ["gather_t3"], "effects": { "gatherSpeed": 0.30, "dropRate": 0.10 } },
+    "gather_t5": { "id": "gather_t5", "name": "大师采集", "branch": "gather", "tier": 5, "cost": 200, "prerequisites": ["gather_t4"], "effects": { "gatherSpeed": 0.50 } },
+    "gather_t6": { "id": "gather_t6", "name": "采集巅峰", "branch": "gather", "tier": 6, "cost": 400, "prerequisites": ["gather_t5"], "effects": { "gatherSpeed": 1.00, "autoCollectSpeed": 0.50 } },
+
+    "produce_t1": { "id": "produce_t1", "name": "基础生产", "branch": "produce", "tier": 1, "cost": 10, "prerequisites": [], "effects": { "produceSpeed": 0.10 } },
+    "produce_t2": { "id": "produce_t2", "name": "高效生产", "branch": "produce", "tier": 2, "cost": 25, "prerequisites": ["produce_t1"], "effects": { "produceSpeed": 0.20 } },
+    "produce_t3": { "id": "produce_t3", "name": "品质提升", "branch": "produce", "tier": 3, "cost": 50, "prerequisites": ["produce_t2"], "effects": { "qualityBonus": 0.30 } },
+    "produce_t4": { "id": "produce_t4", "name": "材料节省", "branch": "produce", "tier": 4, "cost": 100, "prerequisites": ["produce_t3"], "effects": { "materialSave": 0.20 } },
+    "produce_t5": { "id": "produce_t5", "name": "大师生产", "branch": "produce", "tier": 5, "cost": 200, "prerequisites": ["produce_t4"], "effects": { "produceSpeed": 0.50 } },
+    "produce_t6": { "id": "produce_t6", "name": "生产巅峰", "branch": "produce", "tier": 6, "cost": 400, "prerequisites": ["produce_t5"], "effects": { "produceSpeed": 1.00, "qualityBonus": 0.50 } },
+
+    "explore_t1": { "id": "explore_t1", "name": "基础探索", "branch": "explore", "tier": 1, "cost": 10, "prerequisites": [], "effects": { "exploreSpeed": 0.10 } },
+    "explore_t2": { "id": "explore_t2", "name": "高效探索", "branch": "explore", "tier": 2, "cost": 25, "prerequisites": ["explore_t1"], "effects": { "exploreSpeed": 0.20 } },
+    "explore_t3": { "id": "explore_t3", "name": "星舟加速", "branch": "explore", "tier": 3, "cost": 50, "prerequisites": ["explore_t2"], "effects": { "shipSpeed": 0.30 } },
+    "explore_t4": { "id": "explore_t4", "name": "隐藏资源", "branch": "explore", "tier": 4, "cost": 100, "prerequisites": ["explore_t3"], "effects": { "rareResourceChance": 0.15 } },
+    "explore_t5": { "id": "explore_t5", "name": "大师探索", "branch": "explore", "tier": 5, "cost": 200, "prerequisites": ["explore_t4"], "effects": { "exploreSpeed": 0.50 } },
+    "explore_t6": { "id": "explore_t6", "name": "探索巅峰", "branch": "explore", "tier": 6, "cost": 400, "prerequisites": ["explore_t5"], "effects": { "exploreSpeed": 1.00, "rareResourceChance": 0.30 } }
+  }
+}

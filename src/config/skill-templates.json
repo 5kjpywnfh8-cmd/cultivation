@@ -1,36 +1,14 @@
 {
-  "_comment": "功法配置表 - 数据源：07-技能系统.md",
-  "version": 1,
+  "_comment": "技能配置表 - 数据源：07-技能系统.md + 2.8灵石阁功法",
+  "version": 2,
   "skills": {
-    "basic_sword_art": {
-      "id": "basic_sword_art",
-      "name": "基础剑诀",
-      "type": "active",
-      "description": "基础攻击技能",
-      "damageMultiplier": 1.2,
-      "cooldown": 3,
-      "unlockCondition": null,
-      "fragmentRequired": 0
-    },
-    "gathering_art": {
-      "id": "gathering_art",
-      "name": "聚灵术",
-      "type": "passive",
-      "description": "被动提升星元获取10%",
-      "effects": { "starYuanGainPct": 0.10 },
-      "cooldown": 0,
-      "unlockCondition": null,
-      "fragmentRequired": 0
-    },
-    "iron_wall_art": {
-      "id": "iron_wall_art",
-      "name": "铁壁功",
-      "type": "passive",
-      "description": "被动提升防御15%",
-      "effects": { "defensePct": 0.15 },
-      "cooldown": 0,
-      "unlockCondition": null,
-      "fragmentRequired": 0
-    }
+    "basic_sword_art": { "id": "basic_sword_art", "name": "基础剑诀", "type": "active", "description": "基础攻击技能", "damageMultiplier": 1.2, "cooldown": 3, "unlockCondition": null, "fragmentRequired": 0 },
+    "gathering_art": { "id": "gathering_art", "name": "聚灵术", "type": "passive", "description": "被动提升星元获取10%", "effects": { "starYuanGainPct": 0.10 }, "cooldown": 0, "unlockCondition": null, "fragmentRequired": 0 },
+    "iron_wall_art": { "id": "iron_wall_art", "name": "铁壁功", "type": "passive", "description": "被动提升防御15%", "effects": { "defensePct": 0.15 }, "cooldown": 0, "unlockCondition": null, "fragmentRequired": 0 },
+    "sword_dance": { "id": "sword_dance", "name": "御剑术", "type": "active", "description": "御剑攻击，造成350%伤害", "damageMultiplier": 3.5, "cooldown": 8, "unlockCondition": { "level": 11 }, "fragmentRequired": 0 },
+    "diamond_body": { "id": "diamond_body", "name": "金刚护体", "type": "active", "description": "无敌2秒", "damageMultiplier": 0, "cooldown": 30, "effects": { "invincible": 2 }, "unlockCondition": { "level": 21 }, "fragmentRequired": 0 },
+    "iron_shield": { "id": "iron_shield", "name": "天罡护体", "type": "passive", "description": "被动减伤20%", "effects": { "damageReduction": 0.20 }, "cooldown": 0, "unlockCondition": { "level": 15 }, "fragmentRequired": 0 },
+    "thunder_strike": { "id": "thunder_strike", "name": "雷霆万钧", "type": "active", "description": "雷霆攻击，造成500%伤害", "damageMultiplier": 5.0, "cooldown": 12, "effects": { "stun": 2 }, "unlockCondition": { "level": 31 }, "fragmentRequired": 0 },
+    "mixed_yuan": { "id": "mixed_yuan", "name": "混元功", "type": "passive", "description": "被动全属性+15%", "effects": { "allStatsPct": 0.15 }, "cooldown": 0, "unlockCondition": { "level": 41 }, "fragmentRequired": 0 }
   }
 }

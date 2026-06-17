@@ -101,18 +101,26 @@ export class TransportSystem implements GameSystem {
 
   /**
    * 完成运输任务
+   *
+   * 运输将物品从出发星球的库存转移到目标星球的库存（都通过玩家背包中转）
+   * 简化处理：物品已在发起时扣除，完成时添加到玩家背包
    */
   private completeTask(task: TransportTask): void {
     task.completed = true;
 
-    // 将物品添加到目标星球的资源储量
-    const planet = this.state.planets[task.toPlanet];
-    if (planet) {
-      for (const [resourceId, amount] of Object.entries(task.items)) {
-        const reserve = planet.resourceReserves[resourceId];
-        if (reserve) {
-          reserve.current = Math.min(reserve.max, reserve.current + amount);
-        }
+    // 将物品添加到玩家背包
+    for (const [resourceId, amount] of Object.entries(task.items)) {
+      const existing = this.state.inventory.items[resourceId];
+      if (existing) {
+        existing.quantity += amount;
+      } else {
+        this.state.inventory.items[resourceId] = {
+          id: resourceId,
+          name: resourceId,
+          type: 'resource',
+          quantity: amount,
+          maxStack: 0,
+        };
       }
     }
 
@@ -135,6 +143,42 @@ export class TransportSystem implements GameSystem {
    */
   getCapacity(): number {
     return this.state.starShip.capacity;
+  }
+
+  /**
+   * 升级星舟
+   *
+   * 5级星舟：容量20→50→100→200→500
+   */
+  upgradeStarship(): boolean {
+    const ship = this.state.starShip;
+    if (ship.capacityLevel >= 5) return false;
+
+    const costs = [0, 5000, 20000, 50000, 100000];
+    const capacities = [20, 50, 100, 200, 500];
+    const cost = costs[ship.capacityLevel] ?? 0;
+
+    if (this.state.currency.starCoins < cost) return false;
+
+    this.state.currency.starCoins -= cost;
+    ship.capacityLevel += 1;
+    ship.capacity = capacities[ship.capacityLevel] ?? 500;
+
+    return true;
+  }
+
+  /**
+   * 获取星舟信息
+   */
+  getStarshipInfo(): { level: number; capacity: number; maxLevel: number; upgradeCost: number } {
+    const ship = this.state.starShip;
+    const costs = [0, 5000, 20000, 50000, 100000];
+    return {
+      level: ship.capacityLevel,
+      capacity: ship.capacity,
+      maxLevel: 5,
+      upgradeCost: costs[ship.capacityLevel] ?? 0,
+    };
   }
 
   beforeSave(): void {}

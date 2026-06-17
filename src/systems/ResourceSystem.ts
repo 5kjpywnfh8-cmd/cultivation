@@ -16,10 +16,11 @@ import type { EventBus } from '../core/EventBus';
 import type { PlayerState, PlanetId } from '../core/GameState';
 import type { PlanetSystem } from './PlanetSystem';
 import type { RealmSystem } from './RealmSystem';
+import { addToInventory } from '../utils/inventory';
 
 /** 资源配置 */
 interface ResourceConfig {
-  id: string;
+  id?: string;
   name: string;
   baseRate: number;
   autoRate: number;
@@ -101,11 +102,13 @@ export class ResourceSystem implements GameSystem {
 
     // 计算采集量
     const baseRate = config.baseRate;
-    const realmBonus = 1 + this.state.realm.level * 0.05;
+    const currentStats = this.realmSystem.getCurrentStats();
+    const realmBonus = 1 + (currentStats?.level ?? 1) * 0.05;
     const weatherBonus = this.planetSystem.getWeatherGatherMultiplier();
     const gatherSpeedBonus = this.getGatherSpeedBonus();
+    const planetMultiplier = this.getPlanetGatherMultiplier(planetId);
 
-    let amount = Math.floor(baseRate * realmBonus * weatherBonus * gatherSpeedBonus);
+    let amount = Math.floor(baseRate * realmBonus * weatherBonus * gatherSpeedBonus * planetMultiplier);
 
     // 枯竭惩罚
     const reservePercent = reserve.current / reserve.max;
@@ -262,21 +265,26 @@ export class ResourceSystem implements GameSystem {
   }
 
   /**
+   * 获取星球采集倍率
+   *
+   * 来源：planet-config.json 中的 gatherMultiplier 字段
+   * 起源星/玄铁星/灵植星: x1.0
+   * 幽冥星/天晶星: x1.2
+   * 火山星/混沌星: x1.5
+   * 冰封星: x1.8
+   * 浮空星: x2.5
+   * 深渊星: x3.0
+   */
+  private getPlanetGatherMultiplier(planetId: PlanetId): number {
+    const config = this.planetConfigs[planetId] as { gatherMultiplier?: number } | undefined;
+    return config?.gatherMultiplier ?? 1.0;
+  }
+
+  /**
    * 添加物品到背包
    */
   private addToInventory(itemId: string, name: string, amount: number): void {
-    const items = this.state.inventory.items;
-    if (items[itemId]) {
-      items[itemId].quantity += amount;
-    } else {
-      items[itemId] = {
-        id: itemId,
-        name,
-        type: 'resource',
-        quantity: amount,
-        maxStack: 0,
-      };
-    }
+    addToInventory(this.state, itemId, name, amount, 'resource');
   }
 
   /**

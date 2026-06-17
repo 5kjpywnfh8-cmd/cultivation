@@ -77,22 +77,29 @@ export class PlanetSystem implements GameSystem {
 
   /**
    * 检查星球解锁条件
+   *
+   * 条件来源：02-星球与资源系统.md 0.2节
+   * 起源星/玄铁星/灵植星: 初始
+   * 幽冥星/火山星: 金丹期（21级）
+   * 天晶星/冰封星: 元婴期（31级）
+   * 混沌星/浮空星/深渊星: 化神期（41级）
    */
   checkUnlockCondition(planetId: PlanetId): boolean {
     const conditions: Record<string, { level: number }> = {
-      xuantie: { level: 3 },
-      lingzhi: { level: 10 },
-      youming: { level: 20 },
-      tianjing: { level: 30 },
-      huoshan: { level: 40 },
-      bingfeng: { level: 45 },
-      hundun: { level: 50 },
-      fukong: { level: 55 },
-      shenyuan: { level: 60 },
+      origin: { level: 1 },
+      xuantie: { level: 1 },
+      lingzhi: { level: 1 },
+      youming: { level: 21 },
+      tianjing: { level: 31 },
+      huoshan: { level: 21 },
+      bingfeng: { level: 31 },
+      hundun: { level: 41 },
+      fukong: { level: 41 },
+      shenyuan: { level: 41 },
     };
 
     const cond = conditions[planetId];
-    if (!cond) return true; // origin 无条件
+    if (!cond) return true;
     return this.state.realm.level >= cond.level;
   }
 
@@ -114,9 +121,20 @@ export class PlanetSystem implements GameSystem {
     for (const planetId of Object.keys(weather.weatherRemaining) as PlanetId[]) {
       const remaining = weather.weatherRemaining[planetId];
       if (remaining > 0) {
-        weather.weatherRemaining[planetId] = Math.max(0, remaining - dt);
-        if (weather.weatherRemaining[planetId] <= 0) {
+        const newRemaining = Math.max(0, remaining - dt);
+        weather.weatherRemaining[planetId] = newRemaining;
+
+        // 同步到星球状态
+        const planet = this.state.planets[planetId];
+        if (planet) {
+          planet.weatherRemaining = newRemaining;
+        }
+
+        if (newRemaining <= 0) {
           weather.currentWeathers[planetId] = 'normal';
+          if (planet) {
+            planet.currentWeather = 'normal';
+          }
           this.events.emit('planet:weatherChanged', { planetId, weather: 'normal' });
         }
       }
